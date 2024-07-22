@@ -1,6 +1,7 @@
 const BlogLayout = ({children}) => {
     return ( <div>
-        <h2>BlogLayout</h2>
+        <h2>Blog Layout</h2>
+        <br/>
         {children}
     </div> );
 }
