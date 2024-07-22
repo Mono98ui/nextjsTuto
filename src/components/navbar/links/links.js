@@ -1,7 +1,13 @@
+"use client"
+
 import Link from "next/link";
 import Navbarlinks from "./navbarlinks/navbarlinks";
 import style from "./links.module.css"
+import { useState } from "react";
+
 const Links = () => {
+
+    const [open, setOpen] = useState(false)
 
     const links = [
         {
@@ -27,6 +33,7 @@ const Links = () => {
     const isAdmin = true;
 
     return (
+        <div className={style.container}>
         <div className={style.links}>
             {links.map((link)=>(
                 <Navbarlinks item ={link} key={link.title}/>
@@ -48,6 +55,15 @@ const Links = () => {
                 }}/>) 
             }
 
+        </div>
+        <button className={style.menuButton} onClick={()=> setOpen((prev)=>!prev)}>Menu</button>
+        {
+            open && <div className={style.mobileLinks}>
+                {links.map((link)=>(
+                <Navbarlinks item ={link} key={link.title}/>
+            ))}
+            </div>
+        }
         </div>
     );
 }
