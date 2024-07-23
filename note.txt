@@ -1,0 +1,24 @@
+two way to solve synch problem:
+--useEffect (use client in file)
+--import the component dynanmicly (no need to use client)
+
+client side navigation:
+<Link ... prefetch={false}..>
+avoid performance issue
+add
+useRouter from next/navigation to redirect to the url
+https://nextjs.org/docs/app/api-reference/functions/use-router
+usePathnames()
+useSearchParam()=> param of url
+
+server side navigation:
+
+const lol =({params, searchParams}) =>...
+
+by default api data is cached
+ const res =await fetch("https://jsonplaceholder.typicode.com/posts")
+this is excluding cache
+ const res =await fetch("https://jsonplaceholder.typicode.com/posts", {cache: "no-store"})
+refresh data every 3600 sec
+ const res =await fetch("https://jsonplaceholder.typicode.com/posts", {next: {revalidate:3600}})
+
