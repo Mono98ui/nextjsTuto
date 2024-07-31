@@ -5,6 +5,7 @@ import Navbarlinks from "./navbarlinks/navbarlinks";
 import style from "./links.module.css"
 import { useState } from "react";
 import Image from "next/image"
+import { handleGithubLogout } from "@/librairies/action";
 
 const Links = () => {
 
@@ -47,7 +48,9 @@ const Links = () => {
                     title:"Admin",
                     path:"/admin"
                 }}/> }
-                <button className={style.logout}>Logout</button>
+                <form action={handleGithubLogout}>
+                    <button className={style.logout}>Logout</button>
+                </form>
                 </>
                 : 
                 (<Navbarlinks item ={{
