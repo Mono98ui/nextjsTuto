@@ -57,7 +57,7 @@ export const handleGithubLogout = async () =>{
   await signOut()
 } 
 
-export const register = async (formData) => {
+export const register = async (previousState, formData) => {
   const { username, email, password, img, passwordRepeat } =
   Object.fromEntries(formData);
 
@@ -93,3 +93,17 @@ export const register = async (formData) => {
     return { error: "Something went wrong!" };
   }
 }
+export const login = async (prevState, formData) => {
+  const { username, password } = Object.fromEntries(formData);
+
+  try {
+    await signIn("credentials", { username, password });
+  } catch (err) {
+    console.log(err);
+
+    if (err.message.includes("CredentialsSignin")) {
+      return { error: "Invalid username or password" };
+    }
+    throw err;
+  }
+};
