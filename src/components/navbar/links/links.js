@@ -7,7 +7,7 @@ import { useState } from "react";
 import Image from "next/image"
 import { handleGithubLogout } from "@/librairies/action";
 
-const Links = () => {
+const Links = ({session}) => {
 
     const [open, setOpen] = useState(false)
 
@@ -30,10 +30,6 @@ const Links = () => {
         },
     ]
 
-    //Temporary
-    const session = true;
-    const isAdmin = true;
-
     return (
         <div className={style.container}>
         <div className={style.links}>
@@ -41,9 +37,9 @@ const Links = () => {
                 <Navbarlinks item ={link} key={link.title}/>
             ))}
             {
-                session ? 
+                session?.user ? 
                 <>
-                 {isAdmin && 
+                 {session.user?.isAdmin && 
                 <Navbarlinks item ={{
                     title:"Admin",
                     path:"/admin"
